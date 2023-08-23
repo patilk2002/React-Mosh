@@ -1,8 +1,13 @@
 // import { Fragment } from "react";
 import { MouseEvent, useState } from "react";
 
-function ListGroup() {
-  let items = ["India", "USA", "Rassia", "China", "Singapore", "japan"];
+interface Props {
+  items: String[];
+  heading: String;
+  onSelectItem: (item: String) => void;
+}
+
+function ListGroup({ items, heading, onSelectItem }: Props) {
   //   items = [];
   //   let selectedindx = 0;
   const [selectedindx, setselectedindx] = useState(-1);
@@ -25,7 +30,7 @@ function ListGroup() {
   return (
     // <Fragment>
     <>
-      <h1>List</h1>
+      <h1>{heading}</h1>
       {/* {msg} */}
       {getmsg()}
 
@@ -40,10 +45,13 @@ function ListGroup() {
                 ? "list-group-item active"
                 : "list-group-item"
             }
-            key={item}
+            key={item.toLowerCase()}
             // onClick={() => console.log(item, index)}
             // onClick={handleclick}
-            onClick={() => setselectedindx(index)}
+            onClick={() => {
+              setselectedindx(index);
+              onSelectItem(item);
+            }}
           >
             {item}
           </li>
