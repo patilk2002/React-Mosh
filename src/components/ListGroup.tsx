@@ -1,10 +1,11 @@
 // import { Fragment } from "react";
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 
 function ListGroup() {
   let items = ["India", "USA", "Rassia", "China", "Singapore", "japan"];
   //   items = [];
-  let selectedindx = 0;
+  //   let selectedindx = 0;
+  const [selectedindx, setselectedindx] = useState(-1);
 
   //eventhandler
   const handleclick = (event: MouseEvent) => console.log(event);
@@ -41,7 +42,8 @@ function ListGroup() {
             }
             key={item}
             // onClick={() => console.log(item, index)}
-            onClick={handleclick}
+            // onClick={handleclick}
+            onClick={() => setselectedindx(index)}
           >
             {item}
           </li>
